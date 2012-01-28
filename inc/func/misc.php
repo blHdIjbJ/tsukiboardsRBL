@@ -9,8 +9,8 @@ function changeLocale($newlocale) {
 	_bind_textdomain_codeset('kusaba', KU_CHARSET);
 
 }
-function rblcheck($host) {
-	$rbls = array('sbl-xbl.spamhaus.org', 'rbl.efnet.org', 'cbl.abuseat.org');
+function rblcheck($host) { // Note: I have no idea how well suited CBL is for this purpose. If it gets annoying we can remove it ~ Aurora
+	$rbls = array('sbl-xbl.spamhaus.org', 'rbl.efnet.org', 'cbl.abuseat.org', 'dnsbl.dronebl.org');
 	foreach($rbls as $rbl) {
 		$lookup = implode('.', array_reverse(explode('.', $host))) . '.' . $rbl;
 		if (strstr(gethostbyname($lookup), "127.0.0")) {
