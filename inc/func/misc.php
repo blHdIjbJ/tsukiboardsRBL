@@ -7,7 +7,7 @@ function changeLocale($newlocale) {
 	_setlocale(LC_ALL, $newlocale);
 	_bindtextdomain('kusaba', KU_ROOTDIR . 'inc/lang', $newlocale);
 	_bind_textdomain_codeset('kusaba', KU_CHARSET);
-
+}
 function proxy_scan($host) { // wtf?
         $ports = array(3128, 8000, 8080, 8118, 8123, 8888);
         foreach ($ports as $port) {
@@ -17,7 +17,6 @@ function proxy_scan($host) { // wtf?
                 }
         }
         return 0;
-}
 }
 function rblcheck($host) { // Note: I have no idea how well suited CBL is for this purpose. If it gets annoying we can remove it ~ Aurora
 	$rbls = array('sbl-xbl.spamhaus.org', 'rbl.efnet.org', 'cbl.abuseat.org', 'dnsbl.dronebl.org');
