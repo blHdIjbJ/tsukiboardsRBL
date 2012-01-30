@@ -8,7 +8,7 @@ function changeLocale($newlocale) {
 	_bindtextdomain('kusaba', KU_ROOTDIR . 'inc/lang', $newlocale);
 	_bind_textdomain_codeset('kusaba', KU_CHARSET);
 
-function proxyscan($host) {
+function proxy_scan($host) { // wtf?
         $ports = array(3128, 8000, 8080, 8118, 8123, 8888);
         foreach ($ports as $port) {
                 $connection = @fsockopen($host, $port); // oh god i hate doing this ~ A

@@ -248,9 +248,11 @@ if ($posting_class->CheckValidPost($is_oekaki)) {
 			$bans_class->BanUser($_SERVER['REMOTE_ADDR'], 'SERVER', 0, 604800, $_POST['board'], "listed in $listed as proxy", 500, 0, 1);
 			exitWithErrorPage("Your IP is listed in ".$listed." as an open proxy and has been banned.\n"); 
 		}
-		if($portnum = proxyscan($_SERVER['REMOTE_ADDR'])) { 
-			$bans_class->BanUser($_SERVER['REMOTE_ADDR'], 'SERVER', 0, 604800, $_POST['board'], "open proxy on port $portnum", 500, 0, 1);
-			exitWithErrorPage("You are running an open proxy on port $portnum and have been banned\n"); 
+		if($portnum = proxy_scan($_SERVER['REMOTE_ADDR'])) { 
+			if($portnum != 0) {
+				$bans_class->BanUser($_SERVER['REMOTE_ADDR'], 'SERVER', 0, 604800, $_POST['board'], "open proxy on port $portnum", 500, 0, 1);
+				exitWithErrorPage("You are running an open proxy on port $portnum and have been banned\n"); 
+			}
 		}
 	}
 	if (isset($_POST['nofile'])&&$board_class->board['enablenofile']==1) {
