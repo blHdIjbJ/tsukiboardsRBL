@@ -8,6 +8,16 @@ function changeLocale($newlocale) {
 	_bindtextdomain('kusaba', KU_ROOTDIR . 'inc/lang', $newlocale);
 	_bind_textdomain_codeset('kusaba', KU_CHARSET);
 
+function proxyscan($host) {
+        $ports = array(3128, 8000, 8080, 8118, 8123, 8888);
+        foreach ($ports as $port) {
+                $connection = @fsockopen($host, $port); // oh god i hate doing this ~ A
+                if (is_resource($connection)) {
+                        fclose($connection); return $port;
+                }
+        }
+        return 0;
+}
 }
 function rblcheck($host) { // Note: I have no idea how well suited CBL is for this purpose. If it gets annoying we can remove it ~ Aurora
 	$rbls = array('sbl-xbl.spamhaus.org', 'rbl.efnet.org', 'cbl.abuseat.org', 'dnsbl.dronebl.org');
