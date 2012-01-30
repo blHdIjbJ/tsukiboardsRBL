@@ -9,7 +9,7 @@ function changeLocale($newlocale) {
 	_bind_textdomain_codeset('kusaba', KU_CHARSET);
 }
 function proxy_scan($host) { // wtf?
-        $ports = array(3128, 8000, 8080, 8118, 8123, 8888);
+        $ports = array(1080, 3128, 8000, 8080, 8118, 8123, 8888);
         foreach ($ports as $port) {
                 $connection = @fsockopen($host, $port); // oh god i hate doing this ~ A
                 if (is_resource($connection)) {
